@@ -7,7 +7,7 @@ For help getting started with Flutter, view the online <a href="https://flutter.
   * http: ^0.12.0+2
   * share: ^0.6.1+1
 
-#### Installing
+## Installing
   * In the command terminal, run the following commands:
     ```  
      $ git clone git@github.com:swaroopmaddu/MotivationalQuotes
