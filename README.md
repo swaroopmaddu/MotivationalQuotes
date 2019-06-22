@@ -1,9 +1,10 @@
 # MotivationalQuotes
-               I Motivate is a random quotes generator application developed using Flutter and FAVQs API. You can copy the quote to use or share or you can directly use share option available in app to share the quotes to your friends directly from the application to Whatsapp or other applications.
+   I Motivate is a random quotes generator application developed using Flutter and FAVQs API. You can copy the quote to use or share or you can directly use share option available in app to share the quotes to your friends directly from the application to Whatsapp or other applications.
 
  <p align="center">
-  <img src="https://s1.ezgif.com/save/ezgif-1-d112e6cdba05.gif" height="480" width="320" />
+  <img src="https://s1.ezgif.com/save/ezgif-1-d112e6cdba05.gif" height="500" width="250" />
 </p>
+
 For help getting started with Flutter, view the online <a href="https://flutter.dev/">documentation</a>.
 
 Built with help of API <a href="https://favqs.com/"> Fav Quotes </a>
