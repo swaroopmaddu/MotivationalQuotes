@@ -6,11 +6,11 @@
 </p>
 
 ```
-For help getting started with Flutter, view the online <a href="https://flutter.dev/">documentation</a>.
+* For help getting started with Flutter, view the online <a href="https://flutter.dev/">documentation</a>.
 
-Built with help of API <a href="https://favqs.com/"> Fav Quotes </a>
+* Built with help of API <a href="https://favqs.com/"> Fav Quotes </a>
 
-Read more about the API <a href="https://favqs.com/api">here .</a>
+* Read more about the API <a href="https://favqs.com/api">here .</a>
  ```
 ## Dependencies 
   * http: ^0.12.0+2
