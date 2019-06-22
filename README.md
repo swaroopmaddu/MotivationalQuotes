@@ -3,6 +3,10 @@ I Motivate is a random quotes generator application developed using Flutter
 
 For help getting started with Flutter, view the online <a href="https://flutter.dev/">documentation</a>.
 
+API <a href="https://favqs.com/"> Fav Quotes </a>
+
+Read more about API <a href="https://favqs.com/api">here .</a>
+ 
 ## Dependencies 
   * http: ^0.12.0+2
   * share: ^0.6.1+1
