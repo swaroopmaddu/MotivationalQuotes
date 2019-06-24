@@ -19,7 +19,7 @@ Read more about the API <a href="https://favqs.com/api">here .</a>
   * In the command terminal, run the following commands:
     ```  
      $ git clone git@github.com:swaroopmaddu/MotivationalQuotes
-     $ cd flutter-chat-app/
+     $ cd LetsChat_Flutter/
      $ flutter run
     ```
   * In android studio go to File > New > Project from Version Control > Git
