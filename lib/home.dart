@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:share/share.dart';
-import 'main.dart';
+import 'package:i_motivate/main.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -25,174 +27,155 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
 
     final key = new GlobalKey<ScaffoldState>();
 
     return Scaffold(
-      appBar: AppBar(
-        leading: Icon(
-          Icons.format_quote,
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.deepOrangeAccent,
-        title: Text("I Motivate"),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () => SystemNavigator.pop(),
-          )
-        ],
-      ),
+      backgroundColor: Colors.black,
       key: key,
-      floatingActionButton: FloatingActionButton.extended(
-        elevation: 4.0,
-        backgroundColor: Colors.deepOrangeAccent,
-        icon: const Icon(Icons.format_quote),
-        label: const Text('Refresh'),
-        onPressed: () {
-          setState(() {
-            _getQuote();
-          });
-        },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.share),
-              onPressed: () {
-                Share.share(qod.quote + "\n\t-" + qod.author);
-              },
-            ),
-            Text(""),
-            IconButton(
-              icon: Icon(Icons.content_copy),
-              onPressed: () {
-                Clipboard.setData(
-                  ClipboardData(text: qod.quote + "\n\t-" + qod.author),
-                );
-                key.currentState.showSnackBar(
-                  SnackBar(
-                    content: Text("Copied to Clipboard"),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
       body: Container(
         child: FutureBuilder(
-            future: _getQuote(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.none:
-                case ConnectionState.waiting:
-                  return LinearProgressIndicator(
+          future: _getQuote(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+              case ConnectionState.waiting:
+                return Center(
+                  child: CircularProgressIndicator(
                     backgroundColor: Colors.transparent,
                     valueColor:
                         AlwaysStoppedAnimation<Color>(Colors.deepOrangeAccent),
-                  );
-                default:
-                  if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  } else {
-                    if (snapshot.data == null)
-                      return SplashScreen();
-                    else
-                      return Container(
-                        padding: EdgeInsets.all(32.0),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
+                  ),
+                );
+              default:
+                if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else {
+                  if (snapshot.data == null)
+                    return SplashScreen();
+                  else
+                    return Column(
+                      children: [
+                        SizedBox(height: 120),
+                        ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minWidth: (width - 20),
+                            minHeight: 400,
+                          ),
                           child: Container(
-                            height: height,
-                            width: width,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.0)),
-                            child: Column(
-                              children: <Widget>[
-                                Stack(
-                                  children: <Widget>[
-                                    Container(height: 230.0),
-                                    Container(
-                                      height: 100.0,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(10.0),
-                                          topRight: Radius.circular(10.0),
-                                        ),
-                                        color: Colors.deepOrangeAccent,
-                                      ),
+                            padding: EdgeInsets.all(15.0),
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 15.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "I Motivate",
+                                      style:
+                                          GoogleFonts.getFont('Abril Fatface')
+                                              .copyWith(
+                                                  fontSize: 32.0,
+                                                  color: Colors.deepOrange),
                                     ),
-                                    Positioned(
-                                      top: 50.0,
-                                      left: 94.0,
-                                      child: Container(
-                                        padding: EdgeInsets.all(4.0),
-                                        height: 90.0,
-                                        width: 90.0,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(45.0),
-                                          border: Border.all(
-                                              color: Colors.deepOrange,
-                                              style: BorderStyle.solid,
-                                              width: 2.0),
-                                          image: DecorationImage(
-                                            image:
-                                                AssetImage("images/logo.png"),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
+                                    SizedBox(height: 50),
+                                    Text(
+                                      "“ " + qod.quote + " ”",
+                                      softWrap: true,
+                                      textAlign: TextAlign.center,
+                                      style:
+                                          GoogleFonts.getFont('Hammersmith One')
+                                              .copyWith(
+                                                  fontSize: 20.0,
+                                                  color: Colors.black),
                                     ),
+                                    Text("\n" + qod.author,
+                                        softWrap: true,
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w900,
+                                            fontSize: 20.0)),
+                                    SizedBox(height: 50),
                                   ],
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Center(
-                                    child: Text(
-                                      "“ " + qod.quote + " ”",
-                                      textAlign: TextAlign.center,
-                                      softWrap: true,
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 2.0),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 0.0, horizontal: 40.0),
-                                  child: Center(
-                                    child: Text(
-                                      " ̶̶ " + qod.author,
-                                      textAlign: TextAlign.center,
-                                      softWrap: true,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
                         ),
-                      );
-                  }
-              }
-            }),
+                        SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Clipboard.setData(
+                                  ClipboardData(
+                                      text: qod.quote + "\n\t-" + qod.author),
+                                );
+                                key.currentState.showSnackBar(
+                                  SnackBar(
+                                    content: Text("Copied to Clipboard"),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                width: 60,
+                                height: 60,
+                                child: Icon(Icons.content_copy,
+                                    size: 30, color: Colors.black),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 20.0),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _getQuote();
+                                });
+                              },
+                              child: Container(
+                                width: 60,
+                                height: 60,
+                                child: Icon(Icons.refresh,
+                                    size: 30, color: Colors.black),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 20.0),
+                            GestureDetector(
+                              onTap: () {
+                                Share.share(qod.quote + "\n\t-" + qod.author);
+                              },
+                              child: Container(
+                                width: 60,
+                                height: 60,
+                                child: Icon(Icons.share,
+                                    size: 30, color: Colors.black),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    );
+                }
+            }
+          },
+        ),
       ),
     );
   }
