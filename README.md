@@ -1,26 +1,24 @@
 # MotivationalQuotes
    I Motivate is a random quotes application developed using Flutter and FAVQs API. You can copy the quote to use or you can directly use share option available in-app to share the quotes to your friends directly through Whatsapp or other applications.
 
-## API
-
-* For help getting started with Flutter, view the online <a href="https://flutter.dev/">documentation</a>.
-
-* Built with help of API <a href="https://favqs.com/"> Fav Quotes </a>
-
-* Read more about the API <a href="https://favqs.com/api">here .</a>
-
-# Screenshots
-
-<center>
-<p style="float: left;text-align: center;">
-  <img src="demo/demo.png" width="200" />
-  <img src="demo/demo1.png" width="200/>
-</p></center>
-
-
 ## Dependencies 
   * http: ^0.12.0+2
   * share: ^0.6.1+1
+
+## API
+
+* For help getting started with Flutter, view the online <a href="https://flutter.dev/">documentation</a>.
+* Built with help of API <a href="https://favqs.com/"> Fav Quotes </a>
+* Read more about the API <a href="https://favqs.com/api">here .</a>
+
+# Screenshots
+   
+<br><br>
+<p style="float: left;text-align: center;">
+  <img src="demo/demo.png" width="200" />
+  <img src="demo/demo1.png" width="200" /> 
+</p>
+
 
 ## Installing
   * In the command terminal, run the following commands:
